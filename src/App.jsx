@@ -1,33 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+import './ProductData'
+import ProductData from './ProductData'
+// import Color from './color';
+import { isArrayEmpty } from './utils'
+
+function renderColor(){
+  alert(1);
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const colorChoice = isArrayEmpty(ProductData.colorOptions) ? [] : ProductData.colorOptions.map((props, pos) => {
+    console.log(props);
+
+    return (
+      // <Color styleName={props.styleName} imageUrl={props.imageUrl}/>
+      <div className="col col-3">
+          <img src={props.imageUrl} alt={props.styleName}></img>
+      </div>
+    )
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header><img src="https://pnggrid.com/wp-content/uploads/2021/05/Amazon-Logo-Transparent-1536x465.png.webp" alt="Amazon logo" /></header>
+
+      <div className="row bigRow">
+        <div className="col col-6 h-80">
+          <img className="big-img" src="https://imgur.com/iOeUBV7.png"></img>
+        </div>
+        <div className="col col-6">
+          <h1>{ProductData.title}</h1>
+          <p>{ProductData.description}</p>
+          <h3>Select Color</h3>
+          <div className="row">
+            {/* <renderColor></renderColor> */}
+            <div className="col col-3">
+              <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
+            </div>
+            <div className="col col-3">
+              <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
+            </div>
+            <div className="col col-3">
+              <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
+            </div>
+            <div className="col col-3">
+              <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
+            </div>
+          </div>
+          <h3>Features</h3>
+          <div className="row">
+              <button className="b-feature active">Time</button>
+              <button className="b-feature">Heart Rate</button>
+          </div>
+          <div>
+            <button className="b-buy">Buy Now</button>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
