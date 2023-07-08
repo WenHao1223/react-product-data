@@ -5,21 +5,19 @@ import ProductData from './ProductData'
 // import Color from './color';
 import { isArrayEmpty } from './utils'
 
-function renderColor(){
-  alert(1);
-}
-
-function App() {
+const RenderColor = () => {
   const colorChoice = isArrayEmpty(ProductData.colorOptions) ? [] : ProductData.colorOptions.map((props, pos) => {
     console.log(props);
 
     return (
-      // <Color styleName={props.styleName} imageUrl={props.imageUrl}/>
       <div className="col col-3">
           <img src={props.imageUrl} alt={props.styleName}></img>
       </div>
     )
   });
+}
+
+function App() {
 
   return (
     <>
@@ -34,8 +32,8 @@ function App() {
           <p>{ProductData.description}</p>
           <h3>Select Color</h3>
           <div className="row">
-            {/* <renderColor></renderColor> */}
-            <div className="col col-3">
+            <RenderColor/>
+            {/* <div className="col col-3">
               <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
             </div>
             <div className="col col-3">
@@ -46,7 +44,7 @@ function App() {
             </div>
             <div className="col col-3">
               <img src="https://imgur.com/iOeUBV7.png" alt="Red Strap"></img>
-            </div>
+            </div> */}
           </div>
           <h3>Features</h3>
           <div className="row">
