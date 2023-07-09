@@ -1,11 +1,9 @@
 import React from "react";
 
 const Color = (props) => {
-    console.log("testing color.js");
-    
     return (
         <div className="col col-3">
-            <img src={props.imageUrl} alt={props.styleName}></img>
+            <img src={props.imageUrl} alt={props.styleName} onClick={props.colorChange}></img>
         </div>
     );
 };
