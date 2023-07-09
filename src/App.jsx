@@ -1,9 +1,11 @@
 import './App.css'
 
 import React, { Component } from 'react';
+
 import ProductData from './ProductData'
-import { isArrayEmpty } from './utils'
 import Color from './color';
+
+import { isArrayEmpty } from './utils'
 
 class App extends Component {
   state = {
@@ -13,23 +15,27 @@ class App extends Component {
 
   colorChange = (pos) => {
     this.setState({currentColor: pos});
-  }
+  };
 
   featureActiveChange = (pos) => {
     this.setState({featureActive: pos});
-  }
+  };
+  
+  timeFormat = new Date(Date.now());
+  time = this.timeFormat.getHours() + ":" + this.timeFormat.getMinutes()
   
   render(){
     console.log("Render called");
 
     const RenderColor = () => isArrayEmpty(ProductData.colorOptions) ? [] : ProductData.colorOptions.map((props, pos) => {
+      const colorClass = (pos == this.state.currentColor) ? "col col-3 active" : "col col-3";
       return (
-          <Color imageUrl={props.imageUrl} styleName={props.styleName} key={pos} colorChange={() => this.colorChange(pos)}/>
+          <Color className={colorClass} imageUrl={props.imageUrl} styleName={props.styleName} key={pos} colorChange={() => this.colorChange(pos)}/>
       );
     });
 
     const RenderFeature = () => isArrayEmpty(ProductData.featureList) ? [] : ProductData.featureList.map((props, pos) => {
-      const featureClass = pos == this.state.featureActive ? "b-feature active" : "b-feature";
+      const featureClass = (pos == this.state.featureActive) ? "b-feature active" : "b-feature";
       return (
         <button className={featureClass} key={pos} onClick={() => this.featureActiveChange(pos)}>{props}</button>
       );
@@ -44,6 +50,7 @@ class App extends Component {
         <div className="row bigRow">
           <div className="col col-6 h-80">
             <img className="big-img" src={ProductData.colorOptions[this.state.currentColor].imageUrl}></img>
+            <div className="time">{this.time}</div>
           </div>
           <div className="col col-6">
             <h1>{ProductData.title}</h1>
