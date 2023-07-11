@@ -4,11 +4,11 @@ import classes from "./HeartBeat.module.css"
 function useTime(){
     const [time, setTime] = useState(() => new Date());
     useEffect(() => {
-        const id = setInterval(() => {
+        const timeId = setInterval(() => {
         setTime(new Date());
         }, 1000);
 
-        return () => clearInterval(id);
+        return () => clearInterval(timeId);
     });
     return time;
 }
@@ -16,27 +16,39 @@ function useTime(){
 function heartBeat(){
     const [classUsed, setClassUsed] = useState(() => classes.heartbeat);
     useEffect(() => {
-        const id = setInterval(() => {
-            setClassUsed( (classUsed == classes.heartbeat) ? classes.pump : classes.heartbeat)
-        }, 500)
+        const heartId = setInterval(() => {
+            setClassUsed( (classUsed == classes.heartbeat) ? classes.pump : classes.heartbeat);
+        }, 500);
 
-        return () => clearInterval(id);
+        return () => {
+            clearInterval(heartId);
+        };
     });
     return classUsed;
 }
 
+function ClearAllIntervals() {
+    for (var i = 1; i < 99999; i++)
+        window.clearInterval(i);
+}
+
 const Clock = (props) => {
-    if(props.featureActive){
+    if(!props.featureActive){
+        const time = useTime();
+        var timeString;
+        try {
+            timeString = (time.getHours()).toString().padStart(2, '0') + ":" + (time.getMinutes()).toString().padStart(2, '0');
+        } catch (e) {
+            timeString = "--:--";
+        }
+        return timeString;
+    } else {
         return(
             <div style={{position: "relative"}}>
                 <img className={heartBeat()} src="src/assets/heartbeat.png" alt="Heart beat"></img>
                 <p className={classes.text}>78</p>
             </div>
         );
-    } else {
-        const time = useTime();
-        const timeString = (time.getHours()).toString().padStart(2, '0') + ":" + (time.getMinutes()).toString().padStart(2, '0');
-        return timeString;
     }
 }
 
