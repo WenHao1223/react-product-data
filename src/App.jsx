@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import ProductData from './ProductData'
 import Color from './color';
+import Clock from './clock';
 
 import { isArrayEmpty } from './utils'
 
@@ -21,8 +22,8 @@ class App extends Component {
     this.setState({featureActive: pos});
   };
   
-  timeFormat = new Date(Date.now());
-  time = this.timeFormat.getHours() + ":" + this.timeFormat.getMinutes()
+  // timeFormat = new Date(Date.now());
+  // time = this.timeFormat.getHours() + ":" + this.timeFormat.getMinutes()
   
   render(){
     console.log("Render called");
@@ -50,7 +51,7 @@ class App extends Component {
         <div className="row bigRow">
           <div className="col col-6 h-80">
             <img className="big-img" src={ProductData.colorOptions[this.state.currentColor].imageUrl}></img>
-            <div className="time">{this.time}</div>
+            <Clock/>
           </div>
           <div className="col col-6">
             <h1>{ProductData.title}</h1>
