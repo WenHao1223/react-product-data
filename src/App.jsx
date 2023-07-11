@@ -10,8 +10,8 @@ import { isArrayEmpty } from './utils'
 
 class App extends Component {
   state = {
-    currentColor: "0",
-    featureActive: "0"
+    currentColor: 0,
+    featureActive: 0
   }
 
   colorChange = (pos) => {
@@ -51,7 +51,9 @@ class App extends Component {
         <div className="row bigRow">
           <div className="col col-6 h-80">
             <img className="big-img" src={ProductData.colorOptions[this.state.currentColor].imageUrl}></img>
-            <Clock/>
+            <div className="time">
+              <Clock featureActive={this.state.featureActive}/>
+            </div>
           </div>
           <div className="col col-6">
             <h1>{ProductData.title}</h1>

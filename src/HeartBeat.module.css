@@ -1,0 +1,16 @@
+.heartbeat {
+    /* left: -35%; */
+    position: absolute;
+    width: 150%;
+}
+
+.pump {
+    /* left: -35%; */
+    position: absolute;
+    width: 180%;
+}
+
+.text {
+    position: relative;
+    top: 20px;
+}
