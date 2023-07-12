@@ -25,6 +25,22 @@ class App extends Component {
   // timeFormat = new Date(Date.now());
   // time = this.timeFormat.getHours() + ":" + this.timeFormat.getMinutes()
   
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log('Next State => ', nextState);
+    // console.log('Current State => ', this.state);
+
+    // console.log('Inside ShoudComponentUpdate');
+
+    if (nextState.currentColor === this.state.currentColor) {
+      if(nextState.featureActive === this.state.featureActive) {
+        return false;
+      }
+      return true;
+    }
+
+    return true;
+  }
+
   render(){
     console.log("Render called");
 
